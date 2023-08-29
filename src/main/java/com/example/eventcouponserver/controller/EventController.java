@@ -17,10 +17,10 @@ public class EventController {
 
     private final EventService eventService;
 
-    @PostMapping("/{eventId}/coupons")
-    public ResponseEntity<ResponseMessageDto> createCoupon(@PathVariable Long eventId, @LoginMember MemberDetails memberDetails) {
-        ResponseMessageDto responseDataDto = eventService.createCoupon(eventId, memberDetails);
-
-        return ResponseEntity.status(OK).body(responseDataDto);
-    }
+//    @PostMapping("/{eventId}/coupons")
+//    public ResponseEntity<ResponseMessageDto> createCoupon(@PathVariable Long eventId, @LoginMember MemberDetails memberDetails) {
+//        ResponseMessageDto responseDataDto = eventService.createCoupon(eventId, memberDetails);
+//
+//        return ResponseEntity.status(OK).body(responseDataDto);
+//    }
 }

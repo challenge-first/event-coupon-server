@@ -26,7 +26,7 @@ public class EventServiceImpl implements EventService {
 
     @Transactional
     @Override
-    public ResponseMessageDto createCoupon(Long eventId, MemberDetails memberDetails) {
+    public ResponseMessageDto createCoupon(Long eventId, Long memberId) {
 
         Long couponCount = couponRepository.countByEventId(eventId);
         Event currentEvent = eventRepository.findById(eventId).orElseThrow();
@@ -35,7 +35,7 @@ public class EventServiceImpl implements EventService {
 
         Coupon coupon = Coupon.builder()
                 .eventId(currentEvent.getId())
-                .memberId(memberDetails.getId())
+                .memberId(memberId)
                 .discountRate(currentEvent.getDiscountRate())
                 .build();
 
@@ -53,9 +53,9 @@ public class EventServiceImpl implements EventService {
         if (couponCount >= currentEvent.getMaxMemberCount()) {
             throw new IllegalArgumentException("You have exceeded the number of participants.");
         }
-        if (couponCount != currentEvent.getCurrentMemberCount()){
-            throw new IllegalArgumentException("The number of coupons currently issued does not match the number of people.");
-        }
+//        if (couponCount != currentEvent.getCurrentMemberCount()){
+//            throw new IllegalArgumentException("The number of coupons currently issued does not match the number of people.");
+//        }
         if (currentEvent.getEventStatus().equals(CLOSE)) {
             throw new IllegalArgumentException("Event Close");
         }

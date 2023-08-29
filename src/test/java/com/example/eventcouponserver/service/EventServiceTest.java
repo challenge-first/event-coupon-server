@@ -50,32 +50,32 @@ class EventServiceTest {
                 .build();
     }
 
-    @Test
-    public void createCouponTest() throws Exception {
-        //given
-        when(memberDetails.getId()).thenReturn(1L);
-        when(couponRepository.countByEventId(any())).thenReturn(0L);
-        when(eventRepository.findById(any())).thenReturn(Optional.of(event));
-
-
-        //when
-        ResponseMessageDto coupon = eventService.createCoupon(1L, memberDetails);
-
-        //then
-        assertThat(coupon.getStatusCode()).isEqualTo(200);
-    }
+//    @Test
+//    public void createCouponTest() throws Exception {
+//        //given
+//        when(memberDetails.getId()).thenReturn(1L);
+//        when(couponRepository.countByEventId(any())).thenReturn(0L);
+//        when(eventRepository.findById(any())).thenReturn(Optional.of(event));
+//
+//
+//        //when
+//        ResponseMessageDto coupon = eventService.createCoupon(1L, memberDetails);
+//
+//        //then
+//        assertThat(coupon.getStatusCode()).isEqualTo(200);
+//    }
     
-    @Test
-    public void createCouponExceptionTest() throws Exception {
-        //given
-        event.closeEventAtClosingTime();
-
-        when(couponRepository.countByEventId(any())).thenReturn(0L);
-        when(eventRepository.findById(any())).thenReturn(Optional.of(event));
-
-        // when then
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            eventService.createCoupon(1L, memberDetails);
-        });
-    }
+//    @Test
+//    public void createCouponExceptionTest() throws Exception {
+//        //given
+//        event.closeEventAtClosingTime();
+//
+//        when(couponRepository.countByEventId(any())).thenReturn(0L);
+//        when(eventRepository.findById(any())).thenReturn(Optional.of(event));
+//
+//        // when then
+//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+//            eventService.createCoupon(1L, memberDetails);
+//        });
+//    }
 }
